@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:lets_chat_mobile/routes/contacts_screen/contacts_screen.dart';
 
 import '../../screens/calls_screen/calls_screen.dart';
 import '../../screens/camera_screen/camera_screen.dart';
 import '../../screens/chat_screen/chat_screen.dart';
 
-class HomeScreen extends StatefulWidget {
-  @override
-  _HomeScreenState createState() => _HomeScreenState();
-}
+class HomeScreen extends StatelessWidget {
+  static const routeName = '/';
 
-class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -36,7 +34,21 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         body: TabBarView(
-          children: [CameraScreen(), ChatScreen(), CallsScreen()],
+          children: [
+            CameraScreen(),
+            ChatScreen(),
+            CallsScreen(),
+          ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          child: Icon(
+            Icons.contacts,
+          ),
+          onPressed: () {
+            Navigator.of(context).pushNamed(
+              ContactsScreen.routeName,
+            );
+          },
         ),
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lets_chat_mobile/routes/contacts_screen/contacts_screen.dart';
 
 import './routes/home_screen/home_screen.dart';
 
@@ -10,9 +11,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.teal,
       ),
-      initialRoute: '/',
+      initialRoute: HomeScreen.routeName,
       routes: {
-        '/': (ctx) => HomeScreen(),
+        HomeScreen.routeName: (ctx) => HomeScreen(),
+        ContactsScreen.routeName: (ctx) => ContactsScreen(),
       },
     );
   }
