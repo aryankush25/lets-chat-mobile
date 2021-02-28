@@ -38,9 +38,7 @@ class HomeScreen extends StatelessWidget {
           bottom: TabBar(
             tabs: [
               Tab(
-                icon: Icon(
-                  Icons.camera_alt,
-                ),
+                icon: Icon(Icons.camera_alt),
               ),
               Tab(
                 text: 'CHATS',
