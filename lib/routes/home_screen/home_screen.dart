@@ -5,6 +5,7 @@ import '../../screens/calls_screen/calls_screen.dart';
 import '../../screens/camera_screen/camera_screen.dart';
 import '../../screens/chat_screen/chat_screen.dart';
 import '../../screens/status_screen/status_screen.dart';
+import '../../utils/constants/menu_options.dart';
 
 class HomeScreen extends StatelessWidget {
   static const routeName = '/';
@@ -17,12 +18,21 @@ class HomeScreen extends StatelessWidget {
         ),
         child: Icon(Icons.search),
       ),
-      Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 8,
-        ),
-        child: Icon(Icons.more_vert),
-      ),
+      PopupMenuButton(
+        itemBuilder: (_) => HOME_MENU_OPTIONS.map(
+          (menuOption) {
+            return PopupMenuItem(
+              child: Text(
+                menuOption.label,
+              ),
+              value: menuOption.id,
+            );
+          },
+        ).toList(),
+        onSelected: (value) {
+          print('Selected value - $value');
+        },
+      )
     ];
   }
 
