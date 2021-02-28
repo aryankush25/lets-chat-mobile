@@ -8,6 +8,23 @@ import '../../screens/chat_screen/chat_screen.dart';
 class HomeScreen extends StatelessWidget {
   static const routeName = '/';
 
+  List<Widget> buildAppBarActions() {
+    return [
+      Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 8,
+        ),
+        child: Icon(Icons.search),
+      ),
+      Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 8,
+        ),
+        child: Icon(Icons.more_vert),
+      ),
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -16,6 +33,7 @@ class HomeScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: Text('Let\'s Chat'),
+          actions: buildAppBarActions(),
           bottom: TabBar(
             tabs: [
               Tab(
