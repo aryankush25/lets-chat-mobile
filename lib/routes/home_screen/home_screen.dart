@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:lets_chat_mobile/routes/contacts_screen/contacts_screen.dart';
 
+import '../../routes/contacts_screen/contacts_screen.dart';
 import '../../screens/calls_screen/calls_screen.dart';
 import '../../screens/camera_screen/camera_screen.dart';
 import '../../screens/chat_screen/chat_screen.dart';
+import '../../screens/status_screen/status_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   static const routeName = '/';
@@ -28,7 +29,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 4,
       initialIndex: 1,
       child: Scaffold(
         appBar: AppBar(
@@ -36,18 +37,10 @@ class HomeScreen extends StatelessWidget {
           actions: buildAppBarActions(),
           bottom: TabBar(
             tabs: [
-              Tab(
-                icon: Icon(Icons.camera),
-                text: 'CAMERA',
-              ),
-              Tab(
-                icon: Icon(Icons.chat),
-                text: 'CHATS',
-              ),
-              Tab(
-                icon: Icon(Icons.call),
-                text: 'CALLS',
-              ),
+              Tab(text: 'CAMERA'),
+              Tab(text: 'CHATS'),
+              Tab(text: 'STATUS'),
+              Tab(text: 'CALLS'),
             ],
           ),
         ),
@@ -55,6 +48,7 @@ class HomeScreen extends StatelessWidget {
           children: [
             CameraScreen(),
             ChatScreen(),
+            StatusScreen(),
             CallsScreen(),
           ],
         ),
