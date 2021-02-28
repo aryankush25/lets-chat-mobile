@@ -72,7 +72,7 @@ class HomeScreen extends StatelessWidget {
         ),
         floatingActionButton: FloatingActionButton(
           child: Icon(
-            Icons.contacts,
+            Icons.message,
           ),
           onPressed: () {
             Navigator.of(context).pushNamed(
