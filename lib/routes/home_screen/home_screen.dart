@@ -37,10 +37,20 @@ class HomeScreen extends StatelessWidget {
           actions: buildAppBarActions(),
           bottom: TabBar(
             tabs: [
-              Tab(text: 'CAMERA'),
-              Tab(text: 'CHATS'),
-              Tab(text: 'STATUS'),
-              Tab(text: 'CALLS'),
+              Tab(
+                icon: Icon(
+                  Icons.camera_alt,
+                ),
+              ),
+              Tab(
+                text: 'CHATS',
+              ),
+              Tab(
+                text: 'STATUS',
+              ),
+              Tab(
+                text: 'CALLS',
+              ),
             ],
           ),
         ),
