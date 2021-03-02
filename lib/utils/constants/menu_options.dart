@@ -53,15 +53,15 @@ const CHAT_MENU_OPTIONS = const [
     label: 'Block',
   ),
   MenuModel(
-    id: 'Clear Chat',
-    label: 'clearChat',
+    id: 'clearChat',
+    label: 'Clear Chat',
   ),
   MenuModel(
-    id: 'Export Chat',
-    label: 'exportChat',
+    id: 'exportChat',
+    label: 'Export Chat',
   ),
   MenuModel(
-    id: 'Add Shortcut',
-    label: 'addShortcut',
+    id: 'addShortcut',
+    label: 'Add Shortcut',
   ),
 ];
