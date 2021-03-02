@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:lets_chat_mobile/utils/constants/menu_options.dart';
 
+import '../../utils/constants/menu_options.dart';
 import '../../models/chat.dart';
+import '../../routes/contact_view_screen/contact_view_screen.dart';
 
 class ChatScreen extends StatelessWidget {
   static const routeName = '/chat';
@@ -21,7 +22,10 @@ class ChatScreen extends StatelessWidget {
         leadingWidth: 30,
         title: InkWell(
           onTap: () {
-            print('Tap ${chat.user.name}');
+            Navigator.of(context).pushNamed(
+              ContactViewScreen.routeName,
+              arguments: chat.user,
+            );
           },
           child: Row(
             children: [
@@ -43,6 +47,22 @@ class ChatScreen extends StatelessWidget {
           ),
         ),
         actions: [
+          IconButton(
+            tooltip: 'Video Call',
+            color: Colors.white,
+            icon: Icon(Icons.videocam),
+            onPressed: () {
+              print('Video Call');
+            },
+          ),
+          IconButton(
+            tooltip: 'Voice Call',
+            color: Colors.white,
+            icon: Icon(Icons.call),
+            onPressed: () {
+              print('Voice Call');
+            },
+          ),
           PopupMenuButton(
             icon: Icon(Icons.more_vert),
             itemBuilder: (_) => CHAT_MENU_OPTIONS.map(
