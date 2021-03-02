@@ -8,7 +8,7 @@ class ContactsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Select Contacts'),
+        title: Text('Select Contact'),
       ),
       body: Container(
         child: ListView(
@@ -17,20 +17,9 @@ class ContactsScreen extends StatelessWidget {
                 (contact) => ListTile(
                   contentPadding: EdgeInsets.all(8),
                   leading: CircleAvatar(
+                    backgroundImage: NetworkImage(contact.imageUrl),
                     backgroundColor: Colors.tealAccent.shade100,
                     radius: 30,
-                    child: Padding(
-                      padding: EdgeInsets.all(6),
-                      child: FittedBox(
-                        child: Text(
-                          contact.name.substring(0, 1),
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ),
                   ),
                   title: Text(
                     contact.name,

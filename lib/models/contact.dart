@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class Contacts {
+class Contact {
   final String name;
   final String status;
-  final Color imageUrl;
+  final String imageUrl;
 
-  const Contacts({
+  const Contact({
     @required this.name,
     @required this.status,
-    this.imageUrl,
+    @required this.imageUrl,
   });
 }

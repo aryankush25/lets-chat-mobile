@@ -1,84 +1,104 @@
-import '../models/contacts.dart';
+import '../models/contact.dart';
 
 const DUMMY_CONTACTS = [
-  Contacts(
+  Contact(
     name: 'Aryan Agarwal',
     status: 'Hey there! I am using Let\s chat.',
+    imageUrl: 'https://www.w3schools.com/howto/img_avatar.png',
   ),
-  Contacts(
+  Contact(
     name: 'Baburao Ganpatrao Apte',
     status: 'Khopdi tood sale ka!',
+    imageUrl: 'https://www.w3schools.com/howto/img_avatar.png',
   ),
-  Contacts(
+  Contact(
     name: 'Ruchika Gupta',
     status: 'Hey there! I am using Let\s chat.',
+    imageUrl: 'https://www.w3schools.com/howto/img_avatar.png',
   ),
-  Contacts(
+  Contact(
     name: 'Nayan JD',
     status: 'Hey there! I am using Let\s chat.',
+    imageUrl: 'https://www.w3schools.com/howto/img_avatar.png',
   ),
-  Contacts(
+  Contact(
     name: 'Gaurav',
     status: 'Hey there! I am using Let\s chat.',
+    imageUrl: 'https://www.w3schools.com/howto/img_avatar.png',
   ),
-  Contacts(
+  Contact(
     name: 'John Wick',
     status: 'I love my dog.',
+    imageUrl: 'https://www.w3schools.com/howto/img_avatar.png',
   ),
-  Contacts(
+  Contact(
     name: 'Kabir Singh',
     status: 'I am a surgeon.',
+    imageUrl: 'https://www.w3schools.com/howto/img_avatar.png',
   ),
-  Contacts(
+  Contact(
     name: 'Ragnar Lothbroke',
     status: 'Who want\'s to be king?',
+    imageUrl: 'https://www.w3schools.com/howto/img_avatar.png',
   ),
-  Contacts(
+  Contact(
     name: 'Tommy Shelby',
     status: 'Fooock Linda!',
+    imageUrl: 'https://www.w3schools.com/howto/img_avatar.png',
   ),
-  Contacts(
+  Contact(
     name: 'Michael Scofield',
     status: 'Prison Break',
+    imageUrl: 'https://www.w3schools.com/howto/img_avatar.png',
   ),
-  Contacts(
+  Contact(
     name: 'Aryan Agarwal',
     status: 'Hey there! I am using Let\s chat.',
+    imageUrl: 'https://www.w3schools.com/howto/img_avatar.png',
   ),
-  Contacts(
+  Contact(
     name: 'Baburao Ganpatrao Apte',
     status: 'Khopdi tood sale ka!',
+    imageUrl: 'https://www.w3schools.com/howto/img_avatar.png',
   ),
-  Contacts(
+  Contact(
     name: 'Ruchika Gupta',
     status: 'Hey there! I am using Let\s chat.',
+    imageUrl: 'https://www.w3schools.com/howto/img_avatar.png',
   ),
-  Contacts(
+  Contact(
     name: 'Nayan JD',
     status: 'Hey there! I am using Let\s chat.',
+    imageUrl: 'https://www.w3schools.com/howto/img_avatar.png',
   ),
-  Contacts(
+  Contact(
     name: 'Gaurav',
     status: 'Hey there! I am using Let\s chat.',
+    imageUrl: 'https://www.w3schools.com/howto/img_avatar.png',
   ),
-  Contacts(
+  Contact(
     name: 'John Wick',
     status: 'I love my dog.',
+    imageUrl: 'https://www.w3schools.com/howto/img_avatar.png',
   ),
-  Contacts(
+  Contact(
     name: 'Kabir Singh',
     status: 'I am a surgeon.',
+    imageUrl: 'https://www.w3schools.com/howto/img_avatar.png',
   ),
-  Contacts(
+  Contact(
     name: 'Ragnar Lothbroke',
     status: 'Who want\'s to be king?',
+    imageUrl: 'https://www.w3schools.com/howto/img_avatar.png',
   ),
-  Contacts(
+  Contact(
     name: 'Tommy Shelby',
     status: 'Fooock Linda!',
+    imageUrl: 'https://www.w3schools.com/howto/img_avatar.png',
   ),
-  Contacts(
+  Contact(
     name: 'Michael Scofield',
     status: 'Prison Break',
+    imageUrl: 'https://www.w3schools.com/howto/img_avatar.png',
   ),
 ];
