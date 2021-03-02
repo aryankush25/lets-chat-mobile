@@ -23,17 +23,20 @@ class ContactViewScreen extends StatelessWidget {
         centerTitle: false,
       ),
       body: Stack(
-        alignment: const Alignment(-0.8, 0.9),
+        alignment: const Alignment(-1, 1),
         children: [
           Image.network(
             contact.imageUrl,
           ),
-          Text(
-            contact.name,
-            style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 30,
+          Padding(
+            padding: const EdgeInsets.all(18),
+            child: Text(
+              contact.name,
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 30,
+              ),
             ),
           ),
         ],
