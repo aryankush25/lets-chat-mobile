@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../routes/contacts_screen/contacts_screen.dart';
 import '../../screens/calls_screen/calls_screen.dart';
 import '../../screens/camera_screen/camera_screen.dart';
-import '../../screens/chat_screen/chat_screen.dart';
+import '../../screens/chats_screen/chats_screen.dart';
 import '../../screens/status_screen/status_screen.dart';
 import '../../utils/constants/menu_options.dart';
 
@@ -65,7 +65,7 @@ class HomeScreen extends StatelessWidget {
         body: TabBarView(
           children: [
             CameraScreen(),
-            ChatScreen(),
+            ChatsScreen(),
             StatusScreen(),
             CallsScreen(),
           ],

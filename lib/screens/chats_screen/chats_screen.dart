@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 
 import '../../dummy_data/chats.dart';
 
-class ChatScreen extends StatelessWidget {
+class ChatsScreen extends StatelessWidget {
   String formattedDate(DateTime sentTime) {
     DateTime now = DateTime.now();
     DateTime yesterday = now.subtract(Duration(days: 1));
@@ -34,6 +34,9 @@ class ChatScreen extends StatelessWidget {
         children: dummyChats.map(
           (chat) {
             return ListTile(
+              onTap: () {
+                print(chat);
+              },
               contentPadding: EdgeInsets.all(8),
               leading: CircleAvatar(
                 backgroundImage: NetworkImage(chat.user.imageUrl),
