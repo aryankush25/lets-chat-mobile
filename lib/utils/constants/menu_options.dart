@@ -22,3 +22,46 @@ const HOME_MENU_OPTIONS = const [
     label: 'Settings',
   ),
 ];
+
+const CHAT_MENU_OPTIONS = const [
+  MenuModel(
+    id: 'viewContact',
+    label: 'View Contact',
+  ),
+  MenuModel(
+    id: 'media',
+    label: 'Media, Links, and docs',
+  ),
+  MenuModel(
+    id: 'search',
+    label: 'Search',
+  ),
+  MenuModel(
+    id: 'mute',
+    label: 'Mute notifications',
+  ),
+  MenuModel(
+    id: 'wallpaper',
+    label: 'Wallpaper',
+  ),
+  MenuModel(
+    id: 'report',
+    label: 'Report',
+  ),
+  MenuModel(
+    id: 'block',
+    label: 'Block',
+  ),
+  MenuModel(
+    id: 'Clear Chat',
+    label: 'clearChat',
+  ),
+  MenuModel(
+    id: 'Export Chat',
+    label: 'exportChat',
+  ),
+  MenuModel(
+    id: 'Add Shortcut',
+    label: 'addShortcut',
+  ),
+];

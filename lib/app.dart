@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:lets_chat_mobile/routes/contacts_screen/contacts_screen.dart';
+import 'package:lets_chat_mobile/routes/chat_screen/chat_screen.dart';
 
 import './routes/home_screen/home_screen.dart';
+import './routes/contacts_screen/contacts_screen.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
       routes: {
         HomeScreen.routeName: (ctx) => HomeScreen(),
         ContactsScreen.routeName: (ctx) => ContactsScreen(),
+        ChatScreen.routeName: (ctx) => ChatScreen(),
       },
     );
   }

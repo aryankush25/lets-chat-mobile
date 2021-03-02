@@ -14,7 +14,7 @@ final dummyChats = [
   ),
   Chat(
     user: Contact(
-      name: 'Baburao Ganpatrao Apte',
+      name: 'Baburao Ganpatrao Apte!! Yeh mera style hai',
       status: 'Khopdi tood sale ka!',
       imageUrl: 'https://www.w3schools.com/howto/img_avatar.png',
     ),

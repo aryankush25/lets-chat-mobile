@@ -16,9 +16,17 @@ class HomeScreen extends StatelessWidget {
         padding: const EdgeInsets.symmetric(
           horizontal: 8,
         ),
-        child: Icon(Icons.search),
+        child: IconButton(
+          tooltip: 'Search Chats',
+          color: Colors.white,
+          icon: Icon(Icons.search),
+          onPressed: () {
+            print('Search');
+          },
+        ),
       ),
       PopupMenuButton(
+        icon: Icon(Icons.more_vert),
         itemBuilder: (_) => HOME_MENU_OPTIONS.map(
           (menuOption) {
             return PopupMenuItem(
@@ -32,7 +40,7 @@ class HomeScreen extends StatelessWidget {
         onSelected: (value) {
           print('Selected value - $value');
         },
-      )
+      ),
     ];
   }
 

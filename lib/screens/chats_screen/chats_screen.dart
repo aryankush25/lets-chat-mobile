@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:lets_chat_mobile/routes/chat_screen/chat_screen.dart';
 
 import '../../dummy_data/chats.dart';
 
@@ -35,7 +36,10 @@ class ChatsScreen extends StatelessWidget {
           (chat) {
             return ListTile(
               onTap: () {
-                print(chat);
+                Navigator.of(context).pushNamed(
+                  ChatScreen.routeName,
+                  arguments: chat,
+                );
               },
               contentPadding: EdgeInsets.all(8),
               leading: CircleAvatar(
