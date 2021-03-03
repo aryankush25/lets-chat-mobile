@@ -12,7 +12,7 @@ class ContactsScreen extends StatelessWidget {
       ),
       body: Container(
         child: ListView(
-          children: DUMMY_CONTACTS
+          children: dummyContacts
               .map(
                 (contact) => ListTile(
                   contentPadding: EdgeInsets.all(8),
