@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 
-import '../../models/contact.dart';
+import '../../../models/contact.dart';
 
 class StatusItem extends StatefulWidget {
   final Contact contact;

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+
 import '../../dummy_data/contacts.dart';
 
 class ContactsScreen extends StatelessWidget {
-  static const routeName = '/contacts';
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

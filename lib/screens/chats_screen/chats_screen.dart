@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:lets_chat_mobile/routes/chat_screen/chat_screen.dart';
 
 import '../../dummy_data/chats.dart';
+import '../../utils/constants/route_names.dart';
 
 class ChatsScreen extends StatelessWidget {
   String formattedDate(DateTime sentTime) {
@@ -37,7 +37,7 @@ class ChatsScreen extends StatelessWidget {
             return ListTile(
               onTap: () {
                 Navigator.of(context).pushNamed(
-                  ChatScreen.routeName,
+                  Routes.CHAT,
                   arguments: chat,
                 );
               },

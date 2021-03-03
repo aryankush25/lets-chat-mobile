@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import '../../models/contact.dart';
 
 class ContactViewScreen extends StatelessWidget {
-  static const routeName = '/contactView';
-
   @override
   Widget build(BuildContext context) {
     final contact = ModalRoute.of(context).settings.arguments as Contact;

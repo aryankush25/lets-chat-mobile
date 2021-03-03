@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../../routes/contacts_screen/contacts_screen.dart';
-import '../../screens/calls_screen/calls_screen.dart';
-import '../../screens/camera_screen/camera_screen.dart';
-import '../../screens/chats_screen/chats_screen.dart';
-import '../../screens/status_screen/status_screen.dart';
+import '../calls_screen/calls_screen.dart';
+import '../camera_screen/camera_screen.dart';
+import '../chats_screen/chats_screen.dart';
+import '../status_screen/status_screen.dart';
 import '../../utils/constants/menu_options.dart';
+import '../../utils/constants/route_names.dart';
 
 class HomeScreen extends StatefulWidget {
-  static const routeName = '/';
-
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -98,7 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
           onPressed: () {
             toggelIsClicked();
             Navigator.of(context).pushNamed(
-              ContactsScreen.routeName,
+              Routes.CONTACTS,
             );
           },
         ),

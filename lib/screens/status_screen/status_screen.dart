@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../models/contact.dart';
 import '../../dummy_data/contacts.dart';
-import './status_item.dart';
+import './widgets/status_item.dart';
 
 class StatusScreen extends StatefulWidget {
   final bool isClicked;

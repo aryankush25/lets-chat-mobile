@@ -1,25 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:lets_chat_mobile/routes/routes.dart';
 
-import './routes/chat_screen/chat_screen.dart';
-import './routes/home_screen/home_screen.dart';
-import './routes/contacts_screen/contacts_screen.dart';
-import './routes/contact_view_screen/contact_view_screen.dart';
+import './utils/themes/theme.dart';
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Let\'s Chat',
-      theme: ThemeData(
-        primarySwatch: Colors.teal,
-      ),
-      initialRoute: HomeScreen.routeName,
-      routes: {
-        HomeScreen.routeName: (ctx) => HomeScreen(),
-        ContactsScreen.routeName: (ctx) => ContactsScreen(),
-        ChatScreen.routeName: (ctx) => ChatScreen(),
-        ContactViewScreen.routeName: (ctx) => ContactViewScreen(),
-      },
+      theme: Themes.defaultTheme,
+      routes: SetupRoutes.rootRoutes,
     );
   }
 }

@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../../utils/constants/menu_options.dart';
 import '../../models/chat.dart';
-import '../../routes/contact_view_screen/contact_view_screen.dart';
+import '../../utils/constants/route_names.dart';
 
 class ChatScreen extends StatelessWidget {
-  static const routeName = '/chat';
-
   @override
   Widget build(BuildContext context) {
     final chat = ModalRoute.of(context).settings.arguments as Chat;
@@ -23,7 +21,7 @@ class ChatScreen extends StatelessWidget {
         title: InkWell(
           onTap: () {
             Navigator.of(context).pushNamed(
-              ContactViewScreen.routeName,
+              Routes.CONTACT_VIEW,
               arguments: chat.user,
             );
           },
