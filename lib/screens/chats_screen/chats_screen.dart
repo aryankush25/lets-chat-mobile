@@ -1,33 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 import '../../dummy_data/chats.dart';
 import '../../utils/constants/route_names.dart';
+import '../../utils/helpers/date_helpers.dart';
 
 class ChatsScreen extends StatelessWidget {
-  String formattedDate(DateTime sentTime) {
-    DateTime now = DateTime.now();
-    DateTime yesterday = now.subtract(Duration(days: 1));
-
-    if (sentTime.year == now.year &&
-        sentTime.month == now.month &&
-        sentTime.day == now.day) {
-      return DateFormat.jm().format(sentTime);
-    }
-
-    if (sentTime.year == yesterday.year &&
-        sentTime.month == yesterday.month &&
-        sentTime.day == yesterday.day) {
-      return 'Yesterday';
-    }
-
-    return DateFormat(
-      'd/M/yy',
-    ).format(
-      sentTime,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -65,7 +42,7 @@ class ChatsScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     Text(
-                      formattedDate(
+                      DateHelpers.formattedDate(
                         chat.sentTime,
                       ),
                     )
