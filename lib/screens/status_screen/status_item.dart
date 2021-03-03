@@ -14,7 +14,11 @@ class StatusItem extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _StatusItemState createState() => _StatusItemState();
+  _StatusItemState createState() {
+    // print('createState StatusItem ${contact.id} $key');
+
+    return _StatusItemState();
+  }
 }
 
 class _StatusItemState extends State<StatusItem> {
@@ -22,6 +26,8 @@ class _StatusItemState extends State<StatusItem> {
 
   @override
   void initState() {
+    // print('initState StatusItem ${widget.contact.id}');
+
     const availableColors = [
       Colors.red,
       Colors.amber,
@@ -35,7 +41,23 @@ class _StatusItemState extends State<StatusItem> {
   }
 
   @override
+  void deactivate() {
+    // print('deactivate StatusItem ${widget.contact.id}');
+
+    super.deactivate();
+  }
+
+  @override
+  void dispose() {
+    // print('dispose StatusItem ${widget.contact.id}');
+
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    // print('build StatusItem ${widget.contact.id}');
+
     return ListTile(
       tileColor: _bgColor,
       contentPadding: EdgeInsets.all(8),

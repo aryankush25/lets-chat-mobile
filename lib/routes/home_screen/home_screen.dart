@@ -7,8 +7,21 @@ import '../../screens/chats_screen/chats_screen.dart';
 import '../../screens/status_screen/status_screen.dart';
 import '../../utils/constants/menu_options.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   static const routeName = '/';
+
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  bool isClicked = false;
+
+  toggelIsClicked() {
+    setState(() {
+      isClicked = !isClicked;
+    });
+  }
 
   List<Widget> buildAppBarActions() {
     return [
@@ -74,7 +87,7 @@ class HomeScreen extends StatelessWidget {
           children: [
             CameraScreen(),
             ChatsScreen(),
-            StatusScreen(),
+            StatusScreen(isClicked: isClicked),
             CallsScreen(),
           ],
         ),
@@ -83,6 +96,7 @@ class HomeScreen extends StatelessWidget {
             Icons.message,
           ),
           onPressed: () {
+            toggelIsClicked();
             Navigator.of(context).pushNamed(
               ContactsScreen.routeName,
             );
