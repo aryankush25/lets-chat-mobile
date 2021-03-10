@@ -9,7 +9,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Let\'s Chat',
       theme: Themes.defaultTheme,
-      routes: SetupRoutes.rootRoutes,
+      // routes: SetupRoutes.rootRoutes,
+      onGenerateRoute: SetupRoutes.generateMainRoute,
     );
   }
 }
