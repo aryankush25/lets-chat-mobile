@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:lets_chat_mobile/models/chat.dart';
 
 import '../../dummy_data/chats.dart';
 import '../../utils/constants/route_names.dart';
 import '../../utils/helpers/date_helpers.dart';
+import '../../utils/helpers/navigator_keys.dart';
+import '../../models/chat.dart';
 
 class AllChats extends StatelessWidget {
   const AllChats({
@@ -11,10 +12,8 @@ class AllChats extends StatelessWidget {
   }) : super(key: key);
 
   onTapList(Chat chat, BuildContext context) {
-    Navigator.of(context).pushNamed(
-      Routes.CHAT,
-      arguments: chat,
-    );
+    NavigatorKeys.getChatsNavigatorKeyCurrentState
+        .pushNamed(Routes.CHAT, arguments: chat);
   }
 
   @override

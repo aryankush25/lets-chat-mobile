@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../models/contact.dart';
+import '../../utils/helpers/navigator_keys.dart';
 
 class ContactViewScreen extends StatelessWidget {
   @override
@@ -12,7 +13,7 @@ class ContactViewScreen extends StatelessWidget {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.of(context).pop();
+            NavigatorKeys.getChatsNavigatorKeyCurrentState.pop();
           },
         ),
         title: Text(
