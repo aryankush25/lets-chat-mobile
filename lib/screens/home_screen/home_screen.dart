@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../calls_screen/calls_screen.dart';
 import '../camera_screen/camera_screen.dart';
@@ -7,6 +8,7 @@ import '../status_screen/status_screen.dart';
 import '../../utils/constants/menu_options.dart';
 import '../../utils/constants/route_names.dart';
 import '../../utils/helpers/navigator_keys.dart';
+import '../../bloc/authentication/authentication.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -51,6 +53,11 @@ class _HomeScreenState extends State<HomeScreen> {
         ).toList(),
         onSelected: (value) {
           print('Selected value - $value');
+
+          if (value == 'logout') {
+            BlocProvider.of<AuthenticationBloc>(context)
+                .add(AuthenticationLogoutRequested());
+          }
         },
       ),
     ];

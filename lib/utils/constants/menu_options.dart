@@ -21,6 +21,10 @@ const HOME_MENU_OPTIONS = const [
     id: 'settings',
     label: 'Settings',
   ),
+  MenuModel(
+    id: 'logout',
+    label: 'Logout',
+  ),
 ];
 
 const CHAT_MENU_OPTIONS = const [
