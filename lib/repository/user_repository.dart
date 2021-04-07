@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import '../models/user.dart';
 
-const String base_url = 'lets-chat-server-app.herokuapp.com';
+final String baseUrl = env['BASE_URL'];
 
 class UserRepository {
   Future<User> logIn({
@@ -18,7 +19,7 @@ class UserRepository {
     });
 
     final response = await http.post(
-      Uri.https(base_url, 'login'),
+      Uri.https(baseUrl, 'login'),
       body: body,
       headers: headers,
     );
