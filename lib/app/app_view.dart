@@ -12,14 +12,12 @@ class AppView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<AuthenticationBloc, AuthenticationState>(
       listener: (context, state) {
-        print('#### $state');
-
         if (state.status == AuthenticationStatus.unauthenticated) {
           NavigatorKeys.getHomeNavigatorKeyCurrentState
-              .pushNamedAndRemoveUntil(Routes.LOGIN, (route) => true);
+              .pushNamedAndRemoveUntil(Routes.LOGIN, (route) => false);
         } else {
           NavigatorKeys.getHomeNavigatorKeyCurrentState
-              .pushNamedAndRemoveUntil(Routes.HOME, (route) => true);
+              .pushNamedAndRemoveUntil(Routes.HOME, (route) => false);
         }
       },
       child: MaterialApp(
