@@ -34,4 +34,28 @@ class UserRepository {
       throw Exception('Failed to load user');
     }
   }
+
+  Future<User> me({
+    @required String token,
+  }) async {
+    final headers = {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer $token'
+    };
+
+    final response = await http.get(
+      Uri.https(baseUrl, 'me'),
+      headers: headers,
+    );
+
+    if (response.statusCode == 200) {
+      return User.fromJson(
+        json.decode(
+          response.body,
+        ),
+      );
+    } else {
+      throw Exception('Failed to load user');
+    }
+  }
 }

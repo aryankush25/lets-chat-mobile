@@ -4,10 +4,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import './authentication_event.dart';
 import './authentication_state.dart';
+import '../../repository/user_repository.dart';
+import '../../models/user.dart';
 
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
-  AuthenticationBloc() : super(AuthenticationState.unknown());
+  final UserRepository _userRepository;
+
+  AuthenticationBloc()
+      : _userRepository = UserRepository(),
+        super(AuthenticationState.unknown());
 
   @override
   Stream<AuthenticationState> mapEventToState(
@@ -29,7 +35,9 @@ class AuthenticationBloc
 
             yield AuthenticationState.authenticated(event.user);
 
-            await prefs.setString('authToken', event.user.token);
+            if (event.user.token != null) {
+              await prefs.setString('authToken', event.user.token);
+            }
           } else {
             yield AuthenticationState.unauthenticated();
           }
@@ -47,18 +55,23 @@ class AuthenticationBloc
 
         String token = prefs.getString('authToken');
 
-        print('#### token $token');
+        if (token != null && token != '') {
+          User user = await _userRepository.me(token: token);
 
-        if (token != null) {
           add(AuthenticationStatusChanged(
             status: AuthenticationStatus.authenticated,
+            user: user,
           ));
         } else {
           add(AuthenticationStatusChanged(
             status: AuthenticationStatus.unauthenticated,
           ));
         }
-      } catch (e) {}
+      } catch (e) {
+        add(AuthenticationStatusChanged(
+          status: AuthenticationStatus.unauthenticated,
+        ));
+      }
     }
   }
 }
