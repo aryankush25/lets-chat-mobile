@@ -6,6 +6,8 @@ import '../screens/contacts_screen/contacts_screen.dart';
 import '../screens/chat_screen/chat_screen.dart';
 import '../screens/contact_view_screen/contact_view_screen.dart';
 import '../screens/all_chats/all_chats.dart';
+import '../screens/login_screen/login_screen.dart';
+import '../screens/splash_screen/splash_screen.dart';
 
 /// This file defines routing for this app.
 /// Add the route name in utils/contants/route_names.dart and then create route entry below.
@@ -15,6 +17,8 @@ class SetupRoutes {
 
   static Map<String, WidgetBuilder> get rootRoutes {
     return {
+      Routes.ROOT: (ctx) => SplashScreen(),
+      Routes.LOGIN: (ctx) => LoginScreen(),
       Routes.HOME: (ctx) => HomeScreen(),
       Routes.CONTACTS: (ctx) => ContactsScreen(),
     };
