@@ -48,6 +48,10 @@ class AuthenticationBloc
           break;
       }
     } else if (event is AuthenticationLogoutRequested) {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+
+      await prefs.setString('authToken', '');
+
       yield AuthenticationState.unauthenticated();
     } else if (event is AuthenticationVerifyRequested) {
       try {
