@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 
 import './authentication_state.dart';
 import '../../models/user.dart';
@@ -15,7 +16,7 @@ class AuthenticationStatusChanged extends AuthenticationEvent {
   final User user;
 
   const AuthenticationStatusChanged({
-    this.status,
+    @required this.status,
     this.user,
   });
 
@@ -24,3 +25,5 @@ class AuthenticationStatusChanged extends AuthenticationEvent {
 }
 
 class AuthenticationLogoutRequested extends AuthenticationEvent {}
+
+class AuthenticationVerifyRequested extends AuthenticationEvent {}

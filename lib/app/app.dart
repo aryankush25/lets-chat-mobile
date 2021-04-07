@@ -10,7 +10,10 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (_) => AuthenticationBloc(),
+          create: (_) => AuthenticationBloc()
+            ..add(
+              AuthenticationVerifyRequested(),
+            ),
         ),
       ],
       child: AppView(),

@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 
 import '../../models/user.dart';
 
-enum AuthenticationStatus { authenticated, unauthenticated }
+enum AuthenticationStatus { authenticated, unauthenticated, unknown }
 
 class AuthenticationState extends Equatable {
   final AuthenticationStatus status;
@@ -20,6 +20,8 @@ class AuthenticationState extends Equatable {
         );
 
   const AuthenticationState.unauthenticated() : this._();
+
+  const AuthenticationState.unknown() : this._();
 
   @override
   List<Object> get props => [status, user];
