@@ -23,8 +23,6 @@ class SetupRoutes {
   static Route generateChatsRoute(RouteSettings settings) {
     Widget page;
 
-    print('#### settings 2 $settings');
-
     switch (settings.name) {
       case Routes.ALL_CHATS:
         page = AllChats();
@@ -55,8 +53,6 @@ class SetupRoutes {
 
   static Route generateMainRoute(RouteSettings settings) {
     Widget page;
-
-    print('#### settings 1 $settings');
 
     switch (settings.name) {
       case Routes.HOME:

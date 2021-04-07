@@ -3,7 +3,7 @@ import 'package:lets_chat_mobile/routes/routes.dart';
 
 import './utils/themes/theme.dart';
 import './routes/routes.dart';
-import '../utils/helpers/navigator_keys.dart';
+import './utils/helpers/navigator_keys.dart';
 
 class MyApp extends StatelessWidget {
   @override
