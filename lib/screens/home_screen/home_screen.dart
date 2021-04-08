@@ -6,6 +6,7 @@ import '../chats_screen/chats_screen.dart';
 import '../status_screen/status_screen.dart';
 import '../../utils/constants/menu_options.dart';
 import '../../utils/constants/route_names.dart';
+import '../../utils/helpers/navigator_keys.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -95,7 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           onPressed: () {
             toggelIsClicked();
-            Navigator.of(context).pushNamed(
+            NavigatorKeys.getHomeNavigatorKeyCurrentState.pushNamed(
               Routes.CONTACTS,
             );
           },

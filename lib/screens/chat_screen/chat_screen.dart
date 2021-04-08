@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../utils/constants/menu_options.dart';
 import '../../models/chat.dart';
 import '../../utils/constants/route_names.dart';
+import '../../utils/helpers/navigator_keys.dart';
 
 class ChatScreen extends StatelessWidget {
   @override
@@ -14,13 +15,13 @@ class ChatScreen extends StatelessWidget {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.of(context).pop();
+            NavigatorKeys.getChatsNavigatorKeyCurrentState.pop();
           },
         ),
         leadingWidth: 30,
         title: InkWell(
           onTap: () {
-            Navigator.of(context).pushNamed(
+            NavigatorKeys.getChatsNavigatorKeyCurrentState.pushNamed(
               Routes.CONTACT_VIEW,
               arguments: chat.user,
             );
