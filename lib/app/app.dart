@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import './app_view.dart';
 import '../bloc/authentication/authentication.dart';
+import '../bloc/contacts/contacts.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -15,6 +16,9 @@ class MyApp extends StatelessWidget {
               AuthenticationVerifyRequested(),
             ),
         ),
+        BlocProvider(
+          create: (_) => ContactsBloc(),
+        )
       ],
       child: AppView(),
     );
