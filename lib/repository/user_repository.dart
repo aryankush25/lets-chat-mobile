@@ -3,23 +3,34 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/user.dart';
-import '../data_provider/user_data_provider.dart';
 import '../models/response.dart';
+import '../services/api_service.dart';
 
 class UserRepository {
-  final UserDataProvider _userDataProvider;
+  final ApiService _apiService;
 
-  UserRepository() : _userDataProvider = UserDataProvider();
+  UserRepository() : _apiService = ApiService();
 
   Future<ResponseModel> logInRequest({
     @required String email,
     @required String password,
   }) async {
     try {
-      final response = await _userDataProvider.logIn(
-        email: email,
-        password: password,
+      final body = {
+        'email': email,
+        'password': password,
+      };
+
+      final response = await _apiService.call(
+        type: ApiCallType.post,
+        path: 'login',
+        body: body,
+        withToken: false,
       );
+
+      if (response.statusCode != 200) {
+        throw Exception('Failed to load user');
+      }
 
       return ResponseModel(
         success: true,
@@ -49,7 +60,14 @@ class UserRepository {
         );
       }
 
-      final response = await _userDataProvider.me();
+      final response = await _apiService.call(
+        type: ApiCallType.get,
+        path: 'me',
+      );
+
+      if (response.statusCode != 200) {
+        throw Exception('Failed to load user');
+      }
 
       return ResponseModel(
         success: true,
