@@ -10,11 +10,11 @@ import '../../repository/user_repository.dart';
 import '../authentication/authentication.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  final UserRepository _userRepository;
+  final UserRepository userRepository;
   final AuthenticationBloc _authenticationBloc;
 
   LoginBloc({authenticationBloc})
-      : _userRepository = UserRepository(),
+      : userRepository = UserRepository(),
         _authenticationBloc = authenticationBloc,
         super(const LoginState());
 
@@ -62,7 +62,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     if (state.status.isValidated) {
       yield state.copyWith(status: FormzStatus.submissionInProgress);
 
-      var response = await _userRepository.logInRequest(
+      var response = await userRepository.logInRequest(
         email: state.email.value,
         password: state.password.value,
       );
