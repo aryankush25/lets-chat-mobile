@@ -1,61 +1,55 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
-import 'package:http/http.dart' as http;
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/user.dart';
-
-final String baseUrl = env['BASE_URL'];
+import '../data_provider/user_data_provider.dart';
+import '../models/response.dart';
 
 class UserRepository {
+  final UserDataProvider _userDataProvider;
+
+  UserRepository() : _userDataProvider = UserDataProvider();
+
   Future<User> logIn({
     @required String email,
     @required String password,
   }) async {
-    const headers = {'Content-Type': 'application/json'};
-    final body = json.encode({
-      'email': email,
-      'password': password,
-    });
-
-    final response = await http.post(
-      Uri.https(baseUrl, 'login'),
-      body: body,
-      headers: headers,
+    final response = await _userDataProvider.logIn(
+      email: email,
+      password: password,
     );
 
-    if (response.statusCode == 200) {
-      return User.fromJson(
-        json.decode(
-          response.body,
-        ),
-      );
-    } else {
-      throw Exception('Failed to load user');
-    }
+    return json.decode(response.body);
   }
 
-  Future<User> me({
-    @required String token,
-  }) async {
-    final headers = {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer $token'
-    };
+  Future<ResponseModel> verifyAuth() async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    final response = await http.get(
-      Uri.https(baseUrl, 'me'),
-      headers: headers,
-    );
+      String token = prefs.getString('authToken');
 
-    if (response.statusCode == 200) {
-      return User.fromJson(
-        json.decode(
-          response.body,
+      if (token != null && token != '') {
+        return ResponseModel(
+          success: false,
+        );
+      }
+
+      final response = await _userDataProvider.me();
+
+      return ResponseModel(
+        success: true,
+        body: User.fromJson(
+          json.decode(
+            response.body,
+          ),
         ),
       );
-    } else {
-      throw Exception('Failed to load user');
+    } catch (error) {
+      return ResponseModel(
+        success: false,
+        error: error,
+      );
     }
   }
 }
