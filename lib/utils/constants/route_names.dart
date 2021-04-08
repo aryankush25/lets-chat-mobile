@@ -2,7 +2,9 @@
 
 class Routes {
   // main level routes
-  static const String HOME = '/';
+  static const String ROOT = '/';
+  static const String HOME = '/home';
+  static const String LOGIN = '/login';
   static const String CONTACTS = '/contacts';
 
   static const String ALL_CHATS = '/allChats';
