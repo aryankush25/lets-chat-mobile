@@ -1,61 +1,87 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
-import 'package:http/http.dart' as http;
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/user.dart';
-
-final String baseUrl = env['BASE_URL'];
+import '../models/response.dart';
+import '../services/api_service.dart';
 
 class UserRepository {
-  Future<User> logIn({
+  final ApiService _apiService;
+
+  UserRepository() : _apiService = ApiService();
+
+  Future<ResponseModel> logInRequest({
     @required String email,
     @required String password,
   }) async {
-    const headers = {'Content-Type': 'application/json'};
-    final body = json.encode({
-      'email': email,
-      'password': password,
-    });
+    try {
+      final body = {
+        'email': email,
+        'password': password,
+      };
 
-    final response = await http.post(
-      Uri.https(baseUrl, 'login'),
-      body: body,
-      headers: headers,
-    );
+      final response = await _apiService.call(
+        type: ApiCallType.post,
+        path: 'login',
+        body: body,
+        withToken: false,
+      );
 
-    if (response.statusCode == 200) {
-      return User.fromJson(
-        json.decode(
-          response.body,
+      if (response.statusCode != 200) {
+        throw Exception('Failed to load user');
+      }
+
+      return ResponseModel(
+        success: true,
+        body: User.fromJson(
+          json.decode(
+            response.body,
+          ),
         ),
       );
-    } else {
-      throw Exception('Failed to load user');
+    } catch (e) {
+      return ResponseModel(
+        success: false,
+        error: e,
+      );
     }
   }
 
-  Future<User> me({
-    @required String token,
-  }) async {
-    final headers = {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer $token'
-    };
+  Future<ResponseModel> verifyAuth() async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    final response = await http.get(
-      Uri.https(baseUrl, 'me'),
-      headers: headers,
-    );
+      String token = prefs.getString('authToken');
 
-    if (response.statusCode == 200) {
-      return User.fromJson(
-        json.decode(
-          response.body,
+      if (token == null || token == '') {
+        return ResponseModel(
+          success: false,
+        );
+      }
+
+      final response = await _apiService.call(
+        type: ApiCallType.get,
+        path: 'me',
+      );
+
+      if (response.statusCode != 200) {
+        throw Exception('Failed to load user');
+      }
+
+      return ResponseModel(
+        success: true,
+        body: User.fromJson(
+          json.decode(
+            response.body,
+          ),
         ),
       );
-    } else {
-      throw Exception('Failed to load user');
+    } catch (error) {
+      return ResponseModel(
+        success: false,
+        error: error,
+      );
     }
   }
 }

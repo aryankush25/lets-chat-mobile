@@ -5,7 +5,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import './authentication_event.dart';
 import './authentication_state.dart';
 import '../../repository/user_repository.dart';
-import '../../models/user.dart';
 
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
@@ -47,35 +46,29 @@ class AuthenticationBloc
           yield AuthenticationState.unauthenticated();
           break;
       }
+    } else if (event is AuthenticationVerifyRequested) {
+      var response = await _userRepository.verifyAuth();
+
+      if (response.success) {
+        add(
+          AuthenticationStatusChanged(
+            status: AuthenticationStatus.authenticated,
+            user: response.body,
+          ),
+        );
+      } else {
+        add(
+          AuthenticationStatusChanged(
+            status: AuthenticationStatus.unauthenticated,
+          ),
+        );
+      }
     } else if (event is AuthenticationLogoutRequested) {
       SharedPreferences prefs = await SharedPreferences.getInstance();
 
       await prefs.setString('authToken', '');
 
       yield AuthenticationState.unauthenticated();
-    } else if (event is AuthenticationVerifyRequested) {
-      try {
-        SharedPreferences prefs = await SharedPreferences.getInstance();
-
-        String token = prefs.getString('authToken');
-
-        if (token != null && token != '') {
-          User user = await _userRepository.me(token: token);
-
-          add(AuthenticationStatusChanged(
-            status: AuthenticationStatus.authenticated,
-            user: user,
-          ));
-        } else {
-          add(AuthenticationStatusChanged(
-            status: AuthenticationStatus.unauthenticated,
-          ));
-        }
-      } catch (e) {
-        add(AuthenticationStatusChanged(
-          status: AuthenticationStatus.unauthenticated,
-        ));
-      }
     }
   }
 }
