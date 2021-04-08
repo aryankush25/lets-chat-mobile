@@ -8,10 +8,10 @@ import '../../repository/user_repository.dart';
 
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
-  final UserRepository _userRepository;
+  final UserRepository userRepository;
 
   AuthenticationBloc()
-      : _userRepository = UserRepository(),
+      : userRepository = UserRepository(),
         super(AuthenticationState.unknown());
 
   @override
@@ -47,7 +47,7 @@ class AuthenticationBloc
           break;
       }
     } else if (event is AuthenticationVerifyRequested) {
-      var response = await _userRepository.verifyAuth();
+      var response = await userRepository.verifyAuth();
 
       if (response.success) {
         add(
