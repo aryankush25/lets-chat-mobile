@@ -11,16 +11,30 @@ class UserRepository {
 
   UserRepository() : _userDataProvider = UserDataProvider();
 
-  Future<User> logIn({
+  Future<ResponseModel> logInRequest({
     @required String email,
     @required String password,
   }) async {
-    final response = await _userDataProvider.logIn(
-      email: email,
-      password: password,
-    );
+    try {
+      final response = await _userDataProvider.logIn(
+        email: email,
+        password: password,
+      );
 
-    return json.decode(response.body);
+      return ResponseModel(
+        success: true,
+        body: User.fromJson(
+          json.decode(
+            response.body,
+          ),
+        ),
+      );
+    } catch (e) {
+      return ResponseModel(
+        success: false,
+        error: e,
+      );
+    }
   }
 
   Future<ResponseModel> verifyAuth() async {
@@ -29,7 +43,7 @@ class UserRepository {
 
       String token = prefs.getString('authToken');
 
-      if (token != null && token != '') {
+      if (token == null || token == '') {
         return ResponseModel(
           success: false,
         );

@@ -8,7 +8,6 @@ import '../../form/password.dart';
 import '../../form/email.dart';
 import '../../repository/user_repository.dart';
 import '../authentication/authentication.dart';
-import '../../models/user.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final UserRepository _userRepository;
@@ -63,21 +62,19 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     if (state.status.isValidated) {
       yield state.copyWith(status: FormzStatus.submissionInProgress);
 
-      try {
-        User user = await _userRepository.logIn(
-          email: state.email.value,
-          password: state.password.value,
-        );
+      var response = await _userRepository.logInRequest(
+        email: state.email.value,
+        password: state.password.value,
+      );
 
+      if (response.success) {
         yield state.copyWith(status: FormzStatus.submissionSuccess);
 
         _authenticationBloc.add(AuthenticationStatusChanged(
           status: AuthenticationStatus.authenticated,
-          user: user,
+          user: response.body,
         ));
-      } on Exception catch (error) {
-        print('Fail $error');
-
+      } else {
         yield state.copyWith(status: FormzStatus.submissionFailure);
       }
     }
