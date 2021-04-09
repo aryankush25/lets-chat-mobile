@@ -77,35 +77,36 @@ class _ContactsScreenState extends State<ContactsScreen> {
 
         if (state is ContactsSuccess) {
           return Container(
-            child: ListView(
-              children: state.contacts
-                  .map(
-                    (contact) => ListTile(
-                      contentPadding: EdgeInsets.all(8),
-                      leading: CircleAvatar(
-                        backgroundImage: NetworkImage(
-                          'https://www.w3schools.com/howto/img_avatar.png',
-                        ),
-                        backgroundColor: Colors.tealAccent.shade100,
-                        radius: 30,
-                      ),
-                      title: Text(
-                        contact.name,
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      subtitle: Text(
-                        contact.email,
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey,
-                        ),
-                      ),
+            child: ListView.builder(
+              itemCount: state.contacts.length,
+              itemBuilder: (BuildContext context, int index) {
+                final contact = state.contacts[index];
+
+                return ListTile(
+                  contentPadding: EdgeInsets.all(8),
+                  leading: CircleAvatar(
+                    backgroundImage: NetworkImage(
+                      'https://www.w3schools.com/howto/img_avatar.png',
                     ),
-                  )
-                  .toList(),
+                    backgroundColor: Colors.tealAccent.shade100,
+                    radius: 30,
+                  ),
+                  title: Text(
+                    contact.name,
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  subtitle: Text(
+                    contact.email,
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.grey,
+                    ),
+                  ),
+                );
+              },
             ),
           );
         }
