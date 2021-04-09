@@ -1,35 +1,37 @@
 import 'package:flutter/material.dart';
 
 import '../../utils/constants/menu_options.dart';
-import '../../models/chat.dart';
 import '../../utils/constants/route_names.dart';
 import '../../utils/helpers/navigator_keys.dart';
+import '../../models/user.dart';
 
 class ChatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final chat = ModalRoute.of(context).settings.arguments as Chat;
+    final user = ModalRoute.of(context).settings.arguments as User;
 
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            NavigatorKeys.getChatsNavigatorKeyCurrentState.pop();
+            NavigatorKeys.getHomeNavigatorKeyCurrentState.pop();
           },
         ),
         leadingWidth: 30,
         title: InkWell(
           onTap: () {
-            NavigatorKeys.getChatsNavigatorKeyCurrentState.pushNamed(
+            NavigatorKeys.getHomeNavigatorKeyCurrentState.pushNamed(
               Routes.CONTACT_VIEW,
-              arguments: chat.user,
+              arguments: user,
             );
           },
           child: Row(
             children: [
               CircleAvatar(
-                backgroundImage: NetworkImage(chat.user.imageUrl),
+                backgroundImage: NetworkImage(
+                  'https://www.w3schools.com/howto/img_avatar.png',
+                ),
                 backgroundColor: Colors.tealAccent.shade100,
                 radius: 20,
               ),
@@ -38,7 +40,7 @@ class ChatScreen extends StatelessWidget {
               ),
               Flexible(
                 child: Text(
-                  chat.user.name,
+                  user.name,
                   overflow: TextOverflow.ellipsis,
                 ),
               )

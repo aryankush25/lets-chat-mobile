@@ -10,21 +10,8 @@ import '../../utils/constants/route_names.dart';
 import '../../utils/helpers/navigator_keys.dart';
 import '../../bloc/authentication/authentication.dart';
 
-class HomeScreen extends StatefulWidget {
-  @override
-  _HomeScreenState createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  bool isClicked = false;
-
-  toggelIsClicked() {
-    setState(() {
-      isClicked = !isClicked;
-    });
-  }
-
-  List<Widget> buildAppBarActions() {
+class HomeScreen extends StatelessWidget {
+  List<Widget> buildAppBarActions(BuildContext context) {
     return [
       Padding(
         padding: const EdgeInsets.symmetric(
@@ -71,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         appBar: AppBar(
           title: Text('Let\'s Chat'),
-          actions: buildAppBarActions(),
+          actions: buildAppBarActions(context),
           bottom: TabBar(
             tabs: [
               Tab(
@@ -93,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             CameraScreen(),
             ChatsScreen(),
-            StatusScreen(isClicked: isClicked),
+            StatusScreen(),
             CallsScreen(),
           ],
         ),
@@ -102,7 +89,6 @@ class _HomeScreenState extends State<HomeScreen> {
             Icons.message,
           ),
           onPressed: () {
-            toggelIsClicked();
             NavigatorKeys.getHomeNavigatorKeyCurrentState.pushNamed(
               Routes.CONTACTS,
             );

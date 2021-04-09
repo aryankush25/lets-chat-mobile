@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 
-import './contact.dart';
-
 class Chat {
-  final Contact user;
-  final String lastMessage;
-  final DateTime sentTime;
-  final bool sentByMe;
+  final String id;
+  final String content;
+  final String senderId;
+  final String receiverId;
+  final String createdAt;
+  final String updatedAt;
+  final String deletedAt;
 
   const Chat({
-    @required this.user,
-    @required this.lastMessage,
-    @required this.sentTime,
-    @required this.sentByMe,
+    @required this.id,
+    @required this.content,
+    @required this.senderId,
+    @required this.receiverId,
+    @required this.createdAt,
+    @required this.updatedAt,
+    @required this.deletedAt,
   });
 }

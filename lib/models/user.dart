@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:equatable/equatable.dart';
 
+import './chat.dart';
+
 class User extends Equatable {
   final String id;
   final String name;
@@ -11,6 +13,7 @@ class User extends Equatable {
   final String updatedAt;
   final String deletedAt;
   final String token;
+  final Chat latestChat;
 
   const User({
     @required this.id,
@@ -22,6 +25,7 @@ class User extends Equatable {
     this.updatedAt,
     this.deletedAt,
     this.token,
+    this.latestChat,
   });
 
   @override
@@ -34,7 +38,8 @@ class User extends Equatable {
         createdAt,
         updatedAt,
         deletedAt,
-        token
+        token,
+        latestChat,
       ];
 
   static const empty = User(id: '-');
@@ -50,6 +55,7 @@ class User extends Equatable {
       updatedAt: json['updatedAt'],
       deletedAt: json['deletedAt'],
       token: json['token'],
+      latestChat: json['latestChat'],
     );
   }
 }
