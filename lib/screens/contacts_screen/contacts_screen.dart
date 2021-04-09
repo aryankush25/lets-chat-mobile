@@ -3,6 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../bloc/contacts/contacts.dart';
 import '../../utils/constants/menu_options.dart';
+import '../../utils/helpers/navigator_keys.dart';
+import '../../utils/constants/route_names.dart';
+import '../../models/user.dart';
 
 class ContactsScreen extends StatefulWidget {
   @override
@@ -16,6 +19,13 @@ class _ContactsScreenState extends State<ContactsScreen> {
 
     BlocProvider.of<ContactsBloc>(context).add(
       ContactsFetched(),
+    );
+  }
+
+  onTapList(User user) {
+    NavigatorKeys.getHomeNavigatorKeyCurrentState.pushNamed(
+      Routes.CHAT,
+      arguments: user,
     );
   }
 
@@ -83,6 +93,7 @@ class _ContactsScreenState extends State<ContactsScreen> {
                 final contact = state.contacts[index];
 
                 return ListTile(
+                  onTap: () => onTapList(contact),
                   contentPadding: EdgeInsets.all(8),
                   leading: CircleAvatar(
                     backgroundImage: NetworkImage(

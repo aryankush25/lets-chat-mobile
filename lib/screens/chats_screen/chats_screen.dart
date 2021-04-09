@@ -22,7 +22,7 @@ class _ChatsScreenState extends State<ChatsScreen> {
     );
   }
 
-  onTapList(User user, BuildContext context) {
+  onTapList(User user) {
     NavigatorKeys.getHomeNavigatorKeyCurrentState.pushNamed(
       Routes.CHAT,
       arguments: user,
@@ -53,7 +53,7 @@ class _ChatsScreenState extends State<ChatsScreen> {
               final user = state.chats[index];
 
               return ListTile(
-                onTap: () => onTapList(user, context),
+                onTap: () => onTapList(user),
                 contentPadding: EdgeInsets.all(8),
                 leading: CircleAvatar(
                   backgroundImage: NetworkImage(
