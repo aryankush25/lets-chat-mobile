@@ -111,7 +111,7 @@ class _ContactsScreenState extends State<ContactsScreen> {
           );
         }
 
-        return Text('no posts');
+        return Text('No contacts');
       },
     );
   }

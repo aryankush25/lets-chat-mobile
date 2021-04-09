@@ -45,6 +45,12 @@ class User extends Equatable {
   static const empty = User(id: '-');
 
   factory User.fromJson(Map<String, dynamic> json) {
+    var latestChats = json['latestChat'];
+
+    if (latestChats != null) {
+      latestChats = Chat.fromJson(latestChats);
+    }
+
     return User(
       id: json['id'],
       name: json['name'],
@@ -55,7 +61,7 @@ class User extends Equatable {
       updatedAt: json['updatedAt'],
       deletedAt: json['deletedAt'],
       token: json['token'],
-      latestChat: json['latestChat'],
+      latestChat: latestChats,
     );
   }
 }

@@ -4,16 +4,16 @@ import '../models/user.dart';
 import '../models/response.dart';
 import '../services/api_service.dart';
 
-class UsersRepository {
+class ChatsRepository {
   final ApiService _apiService;
 
-  UsersRepository() : _apiService = ApiService();
+  ChatsRepository() : _apiService = ApiService();
 
-  Future<ResponseModel> fetchContacts() async {
+  Future<ResponseModel> fetchChats() async {
     try {
       final response = await _apiService.call(
         type: ApiCallType.get,
-        path: 'getAllUsers',
+        path: 'myInitiatedChatsUsers',
       );
 
       if (response.statusCode != 200) {
@@ -24,12 +24,12 @@ class UsersRepository {
         response.body,
       ) as List;
 
-      final List<User> contacts =
+      final List<User> chats =
           jsonData.map((user) => User.fromJson(user)).toList();
 
       return ResponseModel(
         success: true,
-        body: contacts,
+        body: chats,
       );
     } catch (error) {
       return ResponseModel(
