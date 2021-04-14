@@ -33,11 +33,4 @@ class ChatsBloc extends Bloc<ChatsEvent, ChatsState> {
       yield ChatsFailure();
     }
   }
-
-  @override
-  void onTransition(Transition transition) {
-    print('Bloc Log >>> $transition');
-
-    super.onTransition(transition);
-  }
 }
