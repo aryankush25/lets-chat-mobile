@@ -14,7 +14,7 @@ class UserChatsBloc extends Bloc<UserChatsEvent, UserChatsState> {
 
   @override
   Stream<UserChatsState> mapEventToState(UserChatsEvent event) async* {
-    if (event is UserChatsFetched) {
+    if (event is UserChatsFetched && state is UserChatFinal) {
       yield* _mapUserChatsFetchToState(event, state);
     }
   }
@@ -23,14 +23,18 @@ class UserChatsBloc extends Bloc<UserChatsEvent, UserChatsState> {
     UserChatsFetched event,
     UserChatFinal state,
   ) async* {
-    yield state.statusChange(event.userId, UserChatStatus.initial);
+    final userChats = state.userChats[event.userId];
 
-    final response = await userChatsRepository.fetchUserChat(event.userId);
+    if (userChats == null) {
+      yield state.statusChange(event.userId, UserChatStatus.initial);
 
-    if (response.success) {
-      yield state.chatsChange(event.userId, response.body);
-    } else {
-      yield state.statusChange(event.userId, UserChatStatus.failure);
+      final response = await userChatsRepository.fetchUserChat(event.userId);
+
+      if (response.success) {
+        yield state.chatsChange(event.userId, response.body);
+      } else {
+        yield state.statusChange(event.userId, UserChatStatus.failure);
+      }
     }
   }
 }
