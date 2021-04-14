@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../models/user.dart';
 import './widgets/chat_screen_app_bar.dart';
+import './widgets/chat_screen_body.dart';
 
 class ChatScreen extends StatelessWidget {
   @override
@@ -12,6 +13,7 @@ class ChatScreen extends StatelessWidget {
       appBar: ChatScreenAppBar(
         user: user,
       ),
+      body: ChatScreenBody(),
     );
   }
 }
