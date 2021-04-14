@@ -35,8 +35,6 @@ class ChatScreenBody extends StatelessWidget {
             if (state is UserChatFinal) {
               final userChats = state.userChats[user.id];
 
-              print('#### userChats $userChats');
-
               if (userChats == null ||
                   userChats.status == UserChatStatus.initial) {
                 return Center(
@@ -50,7 +48,20 @@ class ChatScreenBody extends StatelessWidget {
                 );
               }
 
-              return Container();
+              return ListView.builder(
+                itemCount: userChats.chats.length,
+                itemBuilder: (context, index) {
+                  final chat = userChats.chats[index];
+
+                  return Container(
+                    child: Column(
+                      children: [
+                        Text(chat.content),
+                      ],
+                    ),
+                  );
+                },
+              );
             }
 
             return FittedBox();
