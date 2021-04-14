@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
-import '../../models/contact.dart';
 import '../../utils/helpers/navigator_keys.dart';
+import '../../models/user.dart';
 
 class ContactViewScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final contact = ModalRoute.of(context).settings.arguments as Contact;
+    final contact = ModalRoute.of(context).settings.arguments as User;
 
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            NavigatorKeys.getChatsNavigatorKeyCurrentState.pop();
+            NavigatorKeys.getHomeNavigatorKeyCurrentState.pop();
           },
         ),
         title: Text(
@@ -25,7 +25,7 @@ class ContactViewScreen extends StatelessWidget {
         alignment: const Alignment(-1, 1),
         children: [
           Image.network(
-            contact.imageUrl,
+            'https://www.w3schools.com/howto/img_avatar.png',
           ),
           Padding(
             padding: const EdgeInsets.all(18),

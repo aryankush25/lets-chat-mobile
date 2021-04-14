@@ -69,3 +69,10 @@ const CHAT_MENU_OPTIONS = const [
     label: 'Add Shortcut',
   ),
 ];
+
+const CONTACTS_MENU_OPTIONS = const [
+  MenuModel(
+    id: 'refresh',
+    label: 'Refresh',
+  ),
+];
