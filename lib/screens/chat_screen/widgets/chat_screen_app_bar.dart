@@ -6,11 +6,11 @@ import '../../../utils/helpers/navigator_keys.dart';
 import '../../../models/user.dart';
 
 class ChatScreenAppBar extends StatelessWidget implements PreferredSizeWidget {
+  final User user;
+
   const ChatScreenAppBar({
     @required this.user,
   });
-
-  final User user;
 
   @override
   Size get preferredSize => Size.fromHeight(kToolbarHeight);

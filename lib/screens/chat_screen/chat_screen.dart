@@ -31,7 +31,9 @@ class _ChatScreenState extends State<ChatScreen> {
       appBar: ChatScreenAppBar(
         user: user,
       ),
-      body: ChatScreenBody(),
+      body: ChatScreenBody(
+        user: user,
+      ),
     );
   }
 }
