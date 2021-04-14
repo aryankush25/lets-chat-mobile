@@ -5,6 +5,7 @@ import './app_view.dart';
 import '../bloc/authentication/authentication.dart';
 import '../bloc/contacts/contacts.dart';
 import '../bloc/chats/chats_bloc.dart';
+import '../bloc/user_chats/user_chats.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -22,6 +23,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (_) => ChatsBloc(),
+        ),
+        BlocProvider(
+          create: (_) => UserChatsBloc(),
         ),
       ],
       child: AppView(),
