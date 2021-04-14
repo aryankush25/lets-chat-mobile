@@ -9,9 +9,9 @@ class User extends Equatable {
   final String email;
   final bool isEmailVerified;
   final bool isOnline;
-  final String createdAt;
-  final String updatedAt;
-  final String deletedAt;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  final DateTime deletedAt;
   final String token;
   final Chat latestChat;
 
@@ -46,10 +46,17 @@ class User extends Equatable {
 
   factory User.fromJson(Map<String, dynamic> json) {
     var latestChats = json['latestChat'];
+    var createdAt = json['createdAt'];
+    var updatedAt = json['updatedAt'];
+    var deletedAt = json['deletedAt'];
 
     if (latestChats != null) {
       latestChats = Chat.fromJson(latestChats);
     }
+
+    createdAt = createdAt != null ? DateTime.parse(createdAt) : null;
+    updatedAt = updatedAt != null ? DateTime.parse(updatedAt) : null;
+    deletedAt = deletedAt != null ? DateTime.parse(deletedAt) : null;
 
     return User(
       id: json['id'],
@@ -57,9 +64,9 @@ class User extends Equatable {
       email: json['email'],
       isEmailVerified: json['isEmailVerified'],
       isOnline: json['isOnline'],
-      createdAt: json['createdAt'],
-      updatedAt: json['updatedAt'],
-      deletedAt: json['deletedAt'],
+      createdAt: createdAt,
+      updatedAt: updatedAt,
+      deletedAt: deletedAt,
       token: json['token'],
       latestChat: latestChats,
     );

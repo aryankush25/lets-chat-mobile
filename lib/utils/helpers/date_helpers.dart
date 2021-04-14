@@ -2,8 +2,10 @@ import 'package:intl/intl.dart';
 
 /// DateTime related helper functions
 class DateHelpers {
-  static String formattedDate(String formattedString) {
-    DateTime sentTime = DateTime.parse(formattedString);
+  static String formattedDate(DateTime sentTime) {
+    if (sentTime == null) {
+      return '';
+    }
 
     DateTime now = DateTime.now();
     DateTime yesterday = now.subtract(Duration(days: 1));

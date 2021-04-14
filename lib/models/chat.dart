@@ -6,9 +6,9 @@ class Chat extends Equatable {
   final String content;
   final String senderId;
   final String receiverId;
-  final String createdAt;
-  final String updatedAt;
-  final String deletedAt;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  final DateTime deletedAt;
 
   const Chat({
     @required this.id,
@@ -32,14 +32,22 @@ class Chat extends Equatable {
       ];
 
   factory Chat.fromJson(Map<String, dynamic> json) {
+    var createdAt = json['createdAt'];
+    var updatedAt = json['updatedAt'];
+    var deletedAt = json['deletedAt'];
+
+    createdAt = createdAt != null ? DateTime.parse(createdAt) : null;
+    updatedAt = updatedAt != null ? DateTime.parse(updatedAt) : null;
+    deletedAt = deletedAt != null ? DateTime.parse(deletedAt) : null;
+
     return Chat(
       id: json['id'],
       content: json['content'],
       senderId: json['senderId'],
       receiverId: json['receiverId'],
-      createdAt: json['createdAt'],
-      updatedAt: json['updatedAt'],
-      deletedAt: json['deletedAt'],
+      createdAt: createdAt,
+      updatedAt: updatedAt,
+      deletedAt: deletedAt,
     );
   }
 }
