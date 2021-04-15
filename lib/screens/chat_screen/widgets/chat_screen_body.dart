@@ -61,13 +61,13 @@ class ChatScreenBody extends StatelessWidget {
                       bottom: 10,
                     ),
                     child: Align(
-                      alignment: (chat.receiverId == user.id
+                      alignment: (chat.senderId == user.id
                           ? Alignment.topLeft
                           : Alignment.topRight),
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
-                          color: (chat.receiverId == user.id
+                          color: (chat.senderId == user.id
                               ? Colors.blueGrey.shade600
                               : Theme.of(context).primaryColor),
                         ),
