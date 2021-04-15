@@ -18,6 +18,7 @@ class ApiService {
     Map<String, String> headers,
     Object body,
     bool withToken = true,
+    Map<String, dynamic> queryParameters,
   }) async {
     var apiHeaders = {
       'Content-Type': 'application/json',
@@ -46,7 +47,11 @@ class ApiService {
       };
     }
 
-    final uri = Uri.https(_baseUrl, path);
+    final uri = Uri.https(
+      _baseUrl,
+      path,
+      queryParameters,
+    );
     var response;
 
     switch (type) {
