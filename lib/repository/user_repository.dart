@@ -41,6 +41,8 @@ class UserRepository {
         ),
       );
     } catch (e) {
+      print('Error $e');
+
       return ResponseModel(
         success: false,
         error: e,

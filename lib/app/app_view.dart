@@ -6,6 +6,7 @@ import '../routes/routes.dart';
 import '../utils/helpers/navigator_keys.dart';
 import '../bloc/authentication/authentication.dart';
 import '../utils/constants/route_names.dart';
+import '../repository/socket_io_repository.dart';
 
 class AppView extends StatelessWidget {
   @override
@@ -15,9 +16,15 @@ class AppView extends StatelessWidget {
         if (state.status == AuthenticationStatus.unauthenticated) {
           NavigatorKeys.getHomeNavigatorKeyCurrentState
               .pushNamedAndRemoveUntil(Routes.LOGIN, (route) => false);
-        } else {
+
+          // RepositoryProvider.of<SocketIoRepository>(context).disconnect();
+        }
+
+        if (state.status == AuthenticationStatus.authenticated) {
           NavigatorKeys.getHomeNavigatorKeyCurrentState
               .pushNamedAndRemoveUntil(Routes.HOME, (route) => false);
+
+          // RepositoryProvider.of<SocketIoRepository>(context).init();
         }
       },
       child: MaterialApp(

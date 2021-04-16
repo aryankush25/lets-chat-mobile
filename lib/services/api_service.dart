@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+// import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
 enum ApiCallType { get, post, put, patch, delete }
@@ -10,7 +10,8 @@ enum ApiCallType { get, post, put, patch, delete }
 class ApiService {
   final String _baseUrl;
 
-  ApiService() : _baseUrl = env['BASE_URL'];
+  // ApiService() : _baseUrl = env['BASE_URL'];
+  ApiService() : _baseUrl = '192.168.1.8:7000';
 
   Future<http.Response> call({
     @required ApiCallType type,
@@ -47,7 +48,8 @@ class ApiService {
       };
     }
 
-    final uri = Uri.https(
+    final uri = Uri.http(
+      // final uri = Uri.https(
       _baseUrl,
       path,
       queryParameters,

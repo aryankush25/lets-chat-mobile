@@ -31,6 +31,7 @@ dependencies:
     formz: ^0.3.2
     flutter_dotenv: ^3.1.0
     shared_preferences: ^2.0.5
+    socket_io_client: ^0.9.12
 
 dev_dependencies:
     flutter_test:
