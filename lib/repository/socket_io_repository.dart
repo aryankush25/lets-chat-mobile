@@ -18,11 +18,11 @@ class SocketIoRepository {
         IO.OptionBuilder().setTransports(
           ['websocket'],
         ).setExtraHeaders(
-          {'auth': token},
+          {
+            'auth': token,
+          },
         ).build(),
       );
-
-      print('#### socket $socket');
 
       socket.onConnect((_) {
         print('connect');
@@ -36,6 +36,14 @@ class SocketIoRepository {
       socket.on('fromServer', (_) => print(_));
 
       socket.onError((error) => print('error $error'));
+
+      socket.onConnecting((data) {
+        print('Connecting');
+      });
+
+      socket.onConnectError((error) {
+        print('Error $error');
+      });
     }
   }
 

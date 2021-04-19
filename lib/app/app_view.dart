@@ -17,14 +17,14 @@ class AppView extends StatelessWidget {
           NavigatorKeys.getHomeNavigatorKeyCurrentState
               .pushNamedAndRemoveUntil(Routes.LOGIN, (route) => false);
 
-          // RepositoryProvider.of<SocketIoRepository>(context).disconnect();
+          RepositoryProvider.of<SocketIoRepository>(context).disconnect();
         }
 
         if (state.status == AuthenticationStatus.authenticated) {
           NavigatorKeys.getHomeNavigatorKeyCurrentState
               .pushNamedAndRemoveUntil(Routes.HOME, (route) => false);
 
-          // RepositoryProvider.of<SocketIoRepository>(context).init();
+          RepositoryProvider.of<SocketIoRepository>(context).init();
         }
       },
       child: MaterialApp(
