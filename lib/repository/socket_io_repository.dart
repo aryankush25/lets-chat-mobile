@@ -1,8 +1,11 @@
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class SocketIoRepository {
   IO.Socket socket;
+  String _baseUrlWebsocket =
+      '${env['SECURED_URL'] != 'false' ? 'https' : 'http'}://${env['BASE_URL']}';
 
   init() async {
     print('Socket init');
@@ -13,13 +16,15 @@ class SocketIoRepository {
     String token = prefs.getString('authToken');
 
     if (token != null && token != '') {
+      print(_baseUrlWebsocket);
+
       socket = IO.io(
-        'http://192.168.1.8:7000',
+        _baseUrlWebsocket,
         IO.OptionBuilder().setTransports(
           ['websocket'],
-        ).setExtraHeaders(
+        ).setAuth(
           {
-            'auth': token,
+            'token': token,
           },
         ).build(),
       );
