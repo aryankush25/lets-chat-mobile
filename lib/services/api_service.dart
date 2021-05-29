@@ -9,8 +9,11 @@ enum ApiCallType { get, post, put, patch, delete }
 
 class ApiService {
   final String _baseUrl;
+  final bool _securedServer;
 
-  ApiService() : _baseUrl = env['BASE_URL'];
+  ApiService()
+      : _baseUrl = env['BASE_URL'],
+        _securedServer = env['SECURED_URL'] != 'false';
 
   Future<http.Response> call({
     @required ApiCallType type,
@@ -47,11 +50,22 @@ class ApiService {
       };
     }
 
-    final uri = Uri.https(
-      _baseUrl,
-      path,
-      queryParameters,
-    );
+    var uri;
+
+    if (_securedServer) {
+      uri = Uri.https(
+        _baseUrl,
+        path,
+        queryParameters,
+      );
+    } else {
+      uri = Uri.http(
+        _baseUrl,
+        path,
+        queryParameters,
+      );
+    }
+
     var response;
 
     switch (type) {
