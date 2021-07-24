@@ -8,16 +8,16 @@ class SocketIoRepository {
       '${env['SECURED_URL'] != 'false' ? 'https' : 'http'}://${env['BASE_URL']}';
 
   init() async {
-    print('Socket init');
-    if (socket != null) print('socket.connected ${socket?.connected}');
+    print('Socket init function called');
+
+    if (socket != null) {
+      print('socket.connected ${socket?.connected}');
+    }
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
-
     String token = prefs.getString('authToken');
 
     if (token != null && token != '') {
-      print(_baseUrlWebsocket);
-
       socket = IO.io(
         _baseUrlWebsocket,
         IO.OptionBuilder().setTransports(
@@ -29,31 +29,71 @@ class SocketIoRepository {
         ).build(),
       );
 
-      socket.onConnect((_) {
-        print('connect');
+      socket.onConnect((data) {
+        print('onConnect $data');
         socket.emit('msg', 'test');
       });
-
-      socket.on('event', (data) => print(data));
-
-      socket.onDisconnect((_) => print('disconnect'));
-
-      socket.on('fromServer', (_) => print(_));
-
-      socket.onError((error) => print('error $error'));
-
+      socket.onConnectError((error) {
+        print('onConnectError $error');
+      });
+      socket.onConnectTimeout((error) {
+        print('onConnectTimeout $error');
+      });
       socket.onConnecting((data) {
-        print('Connecting');
+        print('onConnecting $data');
+      });
+      socket.onDisconnect((data) {
+        print('onDisconnect $data');
+      });
+      socket.onError((error) {
+        print('error $error');
+      });
+      socket.onReconnect((data) {
+        print('onReconnect $data');
+      });
+      socket.onReconnectAttempt((data) {
+        print('onReconnectAttempt $data');
+      });
+      socket.onReconnectFailed((data) {
+        print('onReconnectFailed $data');
+      });
+      socket.onReconnecting((data) {
+        print('onReconnecting $data');
+      });
+      socket.onPing((data) {
+        print('onPing $data');
+      });
+      socket.onPong((data) {
+        print('onPong $data');
       });
 
-      socket.onConnectError((error) {
-        print('Error $error');
+      socket.on('message', (data) {
+        print('message -> $data');
       });
     }
   }
 
+  handleSendMessage(text, to) {
+    socket.emitWithAck(
+      'message',
+      {
+        'text': text,
+        'to': to,
+      },
+      ack: (data) {
+        print('#### message $data');
+
+        bool isSuccess = data.isSuccess;
+
+        if (!isSuccess) {
+          print('#### error message $data');
+        }
+      },
+    );
+  }
+
   disconnect() {
-    print('Socket disconnect');
+    print('Socket disconnect function called');
 
     if (socket != null) {
       print('socket.connected ${socket?.connected}');
