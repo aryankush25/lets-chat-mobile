@@ -2,7 +2,7 @@
     package="com.example.lets_chat_mobile">
     <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="lets_chat_mobile"
+        android:label="Let's Chat"
         android:icon="@mipmap/ic_launcher"
         android:usesCleartextTraffic="true">
         <activity
