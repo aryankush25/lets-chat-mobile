@@ -25,12 +25,13 @@ dependencies:
         sdk: flutter
     cupertino_icons: ^1.0.2
     intl:
-    flutter_bloc: ^7.0.0
-    equatable: ^2.0.0
+    flutter_bloc: ^7.3.0
+    equatable: ^2.0.3
     http: ^0.13.1
     formz: ^0.3.2
     flutter_dotenv: ^3.1.0
     shared_preferences: ^2.0.5
+    socket_io_client: ^2.0.0-beta.4-nullsafety.0
 
 dev_dependencies:
     flutter_test:
